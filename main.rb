@@ -12,6 +12,17 @@ require './models'
 get '/' do 
  	erb :create_account	
 end
+get '/show_logged_in' do
+	@user = current_user
+	erb :user_home
+end
+get '/sign-in' do
+	erb :sign_in
+end
+get '/sign-out' do
+	session[:user_id] = nil #sign user out
+	redirect '/' #redirects user to the main page , that means I don't need to create sign-out.erb
+end
 post '/create_account' do
 	puts "THESE ARE THE PARAMS: #{params.inspect}"
 	#@user = User.create(fname: params[:fname], lname: params[:lname], email: params[:email], password: params[:password])
@@ -20,3 +31,21 @@ post '/create_account' do
 	flash[:notice] = "You were successfully logged in!"
 	erb :user_home
 end
+post '/sign-in' do   
+	@user = User.where(email: params[:email]).first   
+	if @user && @user.password == params[:password]     
+		session[:user_id] = @user.id     
+		flash[:notice] = "You've been signed in successfully."   
+	else     
+		flash[:alert] = "There was a problem signing you in."   
+	end   
+	redirect "/show_logged_in" 
+end
+def current_user
+	if session[:user_id]
+		User.find(session[:user_id])
+	end
+end
+
+
+

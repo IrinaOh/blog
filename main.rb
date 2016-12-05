@@ -16,7 +16,7 @@ get '/show_logged_in' do
 	@user = current_user
 	erb :user_home
 end
-get '/sign-in' do
+get '/sign_in' do
 	erb :sign_in
 end
 get '/sign-out' do
@@ -31,7 +31,7 @@ post '/create_account' do
 	flash[:notice] = "You were successfully logged in!"
 	erb :user_home
 end
-post '/sign-in' do   
+post '/sign_in' do   
 	@user = User.where(email: params[:email]).first   
 	if @user && @user.password == params[:password]     
 		session[:user_id] = @user.id     

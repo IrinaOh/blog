@@ -47,5 +47,18 @@ def current_user
 	end
 end
 
+# next lines are for edit profile #
+
+get '/edit' do
+	@user = current_user
+	erb :edit_profile
+end
+
+post '/edit' do
+	@user = User.where(params)
+	erb :edit_profile
+end
+
+
 
 

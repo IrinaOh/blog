@@ -13,7 +13,7 @@ get '/' do
  	erb :create_account	
 end
 
-get '/show_logged_in' do
+get '/home' do
 	@user = current_user
 	erb :user_home
 end
@@ -39,12 +39,11 @@ end
 post '/sign_in' do   
 	@user = User.where(email: params[:email]).first   
 	if @user && @user.password == params[:password]     
-		session[:user_id] = @user.id     
-		flash[:notice] = "You've been signed in successfully."   
+		session[:user_id] = @user.id   
+		erb :user_home  
 	else     
-		flash[:alert] = "There was a problem signing you in."   
+		redirect '/sign_in'
 	end   
-	redirect "/show_logged_in" 
 end
 
 def current_user
@@ -62,7 +61,7 @@ end
 
 post '/edit' do
 	current_user.update_attributes(params)
-	redirect '/show_logged_in'
+	redirect '/home'
 end
 
 #################################

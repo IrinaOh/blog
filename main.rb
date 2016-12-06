@@ -59,6 +59,9 @@ post '/edit' do
 	erb :edit_profile
 end
 
-
-
+######### delete account
+get '/delete_user' do
+	current_user.destroy
+	redirect '/'
+end
 

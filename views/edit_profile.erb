@@ -1,15 +1,15 @@
 <!-- this is were users can update / edit profile -->
 <h3>Edit Profile</h3>
 <form action="/edit" id="edit" method="POST">
-	<label for="fname">First Name </label>
+	<label for="fname"> Current first Name </label>
 	<input type="text" name="fname" value=<%= @user.fname %>>
 
-	<label for="lname">Last Name </label>
+	<label for="lname">Current last Name </label>
 	<input type="text" name="lname" value=<%= @user.lname %>>
 
 	<label for="Change">Change Password </label>
 	<input type="password" name="password" value=<%= @user.password %>>
-	
+
 	<input type="submit" value="update">
 </form>
 <a href="home">Home</a>

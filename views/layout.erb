@@ -6,6 +6,7 @@
 </head>
 <body>
 	<%= flash[:notice] if flash[:notice] %>
+	<%= flash[:alert] if flash[:alert] %>
 	<%= yield %>
 	<a href="sign-out">Sign out</a>
 	<a href="sign_in">Sign in</a>

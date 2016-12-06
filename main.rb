@@ -46,6 +46,8 @@ def current_user
 		User.find(session[:user_id])
 	end
 end
+# next line is
+
 
 # next lines are for edit profile #
 
@@ -55,9 +57,14 @@ get '/edit' do
 end
 
 post '/edit' do
-	@user = User.where(params)
-	erb :edit_profile
+	current_user.update_attributes(params)
+	
+	redirect '/show_logged_in'
 end
+
+#################################
+
+
 
 
 

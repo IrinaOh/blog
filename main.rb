@@ -57,7 +57,7 @@ end
 
 get '/sign-out' do
 	session[:user_id] = nil 
-	redirect '/' 
+	erb :sign_in 
 end
 
 #################################

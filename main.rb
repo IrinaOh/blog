@@ -9,22 +9,9 @@ enable :sessions
 
 require './models'
 
+###################################
 get '/' do 
  	erb :create_account	
-end
-
-get '/show_logged_in' do
-	@user = current_user
-	erb :user_home
-end
-
-get '/sign_in' do
-	erb :sign_in
-end
-
-get '/sign-out' do
-	session[:user_id] = nil #sign user out
-	redirect '/' #redirects user to the main page , that means I don't need to create sign-out.erb
 end
 
 post '/create_account' do
@@ -36,24 +23,48 @@ post '/create_account' do
 	erb :user_home
 end
 
-post '/sign_in' do   
-	@user = User.where(email: params[:email]).first   
-	if @user && @user.password == params[:password]     
-		session[:user_id] = @user.id     
-		flash[:notice] = "You've been signed in successfully."   
-	else     
-		flash[:alert] = "There was a problem signing you in."   
-	end   
-	redirect "/show_logged_in" 
+###################################
+get '/home' do
+	@user = current_user
+	erb :user_home
 end
+
+###################################
 
 def current_user
 	if session[:user_id]
 		User.find(session[:user_id])
 	end
 end
+
+###################################
+
+get '/sign_in' do
+	erb :sign_in
+end
+
+post '/sign_in' do   
+	@user = User.where(email: params[:email]).first   
+	if @user && @user.password == params[:password]     
+		session[:user_id] = @user.id     
+		flash[:sign_in] = "You're successfully logged in"## this is not doing anything at the moment!!:(#
+		erb :user_home   
+	else     
+		flash[:alert] = "log in failed, please try again"   
+		redirect '/sign_in'
+	end   
+end
+
+get '/sign-out' do
+	session[:user_id] = nil 
+	redirect '/' 
+end
+
 #################################
-# next lines are for edit profile #
+get '/profile' do
+	@user = current_user
+	erb :profile
+end
 
 get '/edit' do
 	@user = current_user
@@ -62,10 +73,8 @@ end
 
 post '/edit' do
 	current_user.update_attributes(params)
-	redirect '/show_logged_in'
+	redirect '/profile'
 end
-
-#################################
 
 get '/delete_user' do
 	current_user.destroy

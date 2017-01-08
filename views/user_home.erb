@@ -3,15 +3,17 @@
 <a href="new_post">Wright A Post</a>||
 <a href="all_users">Find Friends</a>||
 <a href="edit">Edit Profile</a>||<br>
+<h1>PROFILE PAGE</h1>
 <h1><%= @user.fname %> <%= @user.lname %></h1><br>
 
 <div>
-	<% @user.posts.each do |post| %>
-		<h4><%= post.user.fname %> posted:</h4> <br>
+	<h2>Posts:</h2>
+	<% @posts.each do |post| %>
 		<h5><%= post.title %></h5><br>
 		<p><%= post.message %></p><br>
 		<a href="edit_post">Edit </a>||
 		<a href="delete_post">Delete</a>
 	<% end %>
 </div>
+
 

@@ -1,0 +1,7 @@
+<% @posts.each do |post| %>
+	<div>
+		<%= post.user.fname %><br>
+		<%= post.title %><br>
+		<%= post.message %><br>		
+	</div>
+<% end %>

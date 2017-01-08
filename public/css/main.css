@@ -10,3 +10,43 @@ h1, h2, h3, h4, h5, h6 , p {
 .logo{
 	width: 100px;
 }
+/*this is sign-in form styling*/
+#glob_content{
+	background-color: grey;
+	width: 400px;
+	margin: 0 auto;
+}
+form{
+	width: 400px;
+	margin: 0 auto;
+}
+input[type=text], input[type=email], input[type=password]{
+	outline: none;
+	transition: .2s all linear;
+	display: flex;
+	border: 1px solid silver;
+	border-radius: 4px;
+	padding: 8px;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
+}
+input{
+	margin: 10px, 0;
+}
+div#content{
+	background-color: #ffcde0;
+	border-radius: 4px;
+	max-width: 400px;
+	margin: 0 auto;
+	padding: 20px;
+}
+input[type=submit]{
+	padding: 5px, 10px;
+	background-color: #ff2275;
+	border-radius: 4px;
+	border: 1px solid #e7226c;
+	color: white;
+	font-weight: bold;
+	font-size: 14px;
+}

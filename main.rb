@@ -9,6 +9,7 @@ enable :sessions
 
 require './models'
 
+
 ########## Sign In #########################
 get '/' do 
 	session[:user_id] = nil
@@ -29,21 +30,33 @@ post '/sign_in' do
 	end   
 end
 
+############ Create Account #####################
+get '/create_account' do
+	session[:user_id] = nil
+	erb :create_account
+end
+post '/create_account' do
+	puts "THESE ARE THE PARAMS: #{params.inspect}"
+	if User.where(email: params[:email]).first
+		flash[:alert] = "Email Already In Use"
+		redirect '/create_account'
+	else
+		#@user = User.create(fname: params[:fname], lname: params[:lname], email: params[:email], password: params[:password])
+		@user = User.create(params) #short way of doing the line above, does the same thing
+		session[:user_id] = @user.id
+		flash[:notice] = "You were successfully logged in!"
+		erb :user_home
+	end
+end
+
+########### Sign Out ##########
+
 get '/sign-out' do
 	session[:user_id] = nil 
 	redirect '/' 
 end
 
-post '/create_account' do
-	puts "THESE ARE THE PARAMS: #{params.inspect}"
-	#@user = User.create(fname: params[:fname], lname: params[:lname], email: params[:email], password: params[:password])
-	@user = User.create(params) #short way of doing the line above, does the same thing
-	session[:user_id] = @user.id
-	flash[:notice] = "You were successfully logged in!"
-	erb :user_home
-end
-
-###################################
+########### User's Home Page ########################
 get '/home' do
 	@user = current_user
 	erb :user_home
@@ -51,17 +64,10 @@ end
 
 ###################################
 
-def current_user
-	if session[:user_id]
-		User.find(session[:user_id])
-	end
-end
-
-###################################
 
 
 
-#################################
+
 get '/profile' do
 	@user = current_user
 	erb :profile
@@ -88,3 +94,9 @@ end
 
 
 
+###################################
+def current_user
+	if session[:user_id]
+		User.find(session[:user_id])
+	end
+end

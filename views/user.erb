@@ -1,0 +1,9 @@
+<h1><%= @user.fname %> <%= @user.lname %> PROFILE PAGE</h1><br>
+
+<div>
+	<h2>Posts:</h2>
+	<% @posts.each do |post| %>
+		<h5><%= post.title %></h5><br>
+		<p><%= post.message %></p><br>
+	<% end %>
+</div>

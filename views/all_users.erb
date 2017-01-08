@@ -1,3 +1,7 @@
+<a href="sign-out">Sign out</a>||
+<a href="user_home">Profile</a>||
+<a href="new_post">Wright A Post</a>||
+
 <div>	
 	<% @user.each do |user| %>
 		<a href="/user_home/<%= user.id %>"><h3><%= user.fname + " " + user.lname %></h3></a>

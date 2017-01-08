@@ -1,19 +1,24 @@
 <div class="wrapper row" >
-    <div class="content-blocks col-xs-6" >
-  		<form action="/create_account" id="create" method="POST" style="width: 600px">
-			<label for="fname">First Name</label>
-			<input type="text" name="fname">
+    <div class="content-blocks col-xs-6", id="glob_content">
+    	<div id="form-title">
+    		Please Sign-in
+    	</div>
+    	<div id="form-content">
+    		<form action="/create_account" id="create" method="POST" style="width:400px; margin: 0 auto">
+				<label for="fname">First Name</label>
+				<input type="text" name="fname"><br>
 
-			<label for="lname">Last Name</label>
-			<input type="text" name="lname">
+				<label for="lname">Last Name</label>
+				<input type="text" name="lname"><br>
 
-			<label for="email">Email</label>
-			<input type="email" name="email">
-			
-			<label for="password">Password</label>
-			<input type="password" name="password">
-			<input type="submit" value="Create Account">
-		</form>
+				<label for="email">Email</label>
+				<input type="email" name="email"><br>
+				
+				<label for="password">Password</label>
+				<input type="password" name="password"><br>
+				<input type="submit" value="Create Account">
+			</form>
+    	</div>		
     </div>
     <div class="content-blocks col-xs-6" >
     	<img id="front-image" src="/images/front_page.jpg" style="width: 600px">

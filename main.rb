@@ -9,9 +9,29 @@ enable :sessions
 
 require './models'
 
-###################################
+########## Sign In #########################
 get '/' do 
- 	erb :create_account	
+	session[:user_id] = nil
+ 	erb :sign_in	
+end
+get '/sign_in' do
+	erb :sign_in
+end
+
+post '/sign_in' do   
+	@user = User.where(email: params[:email]).first   
+	if @user && @user.password == params[:password]     
+		session[:user_id] = @user.id     
+		redirect '/profile'   
+	else     
+		flash[:alert] = "log in failed, invalid username or password, please try again"   
+		redirect '/sign_in'
+	end   
+end
+
+get '/sign-out' do
+	session[:user_id] = nil 
+	redirect '/' 
 end
 
 post '/create_account' do
@@ -39,26 +59,7 @@ end
 
 ###################################
 
-get '/sign_in' do
-	erb :sign_in
-end
 
-post '/sign_in' do   
-	@user = User.where(email: params[:email]).first   
-	if @user && @user.password == params[:password]     
-		session[:user_id] = @user.id     
-		flash[:sign_in] = "You're successfully logged in"## this is not doing anything at the moment!!:(#
-		erb :user_home   
-	else     
-		flash[:alert] = "log in failed, please try again"   
-		redirect '/sign_in'
-	end   
-end
-
-get '/sign-out' do
-	session[:user_id] = nil 
-	redirect '/' 
-end
 
 #################################
 get '/profile' do

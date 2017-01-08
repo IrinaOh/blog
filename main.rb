@@ -65,6 +65,11 @@ get '/user_home' do
 	erb :user_home
 end
 
+get '/all_posts' do
+	@posts = Post.all
+	erb :all_posts
+end
+
 ########### Edit and Delete Profile ########################
 
 # get '/profile' do
@@ -97,12 +102,12 @@ get '/new_post' do
  	erb :new_post
 end
 get '/edit_post/:post_id' do #does not find the path
-	@post = @user.post.find(params[:post_id])
+	Post.find(params[:post_id])
 	erb :edit_post
 end
 
 post '/new_post' do
- 	Post.create(title: params[:title], message: params[:message], user_id: current_user.id)
+ 	@post = current_user.posts.create(title: params[:title], message: params[:message], user_id: current_user.id)
  	redirect '/user_home'
 end
 post '/edit_post/:post_id' do

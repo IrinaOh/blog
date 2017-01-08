@@ -4,6 +4,6 @@
 
 <div>	
 	<% @user.each do |user| %>
-		<a href="/user_home/<%= user.id %>"><h3><%= user.fname + " " + user.lname %></h3></a>
+		<a href="/user/<%= user.id %>"><h3><%= user.fname + " " + user.lname %></h3></a>
 	<% end %>
 </div>

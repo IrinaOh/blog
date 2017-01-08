@@ -97,6 +97,12 @@ get '/all_users' do
 	erb :all_users
 end
 
+get '/user/:id' do
+	@user = User.find(params[:id])
+	@posts = @user.posts.all
+	erb :user
+end	
+
 ############ Posts #####################
 get '/new_post' do
  	erb :new_post

@@ -1,0 +1,5 @@
+<form action="/edit_post/<%= @post_id %>" method="POST">
+	<input type="text"  value="<%= @post.title %>">
+	<input type="text"  value="<%= @post.message %>">
+	<input type="submit" value="update">
+</form>

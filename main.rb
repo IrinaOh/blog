@@ -61,6 +61,7 @@ end
 ########### User's Home Page ########################
 get '/user_home' do
 	@user = current_user
+	@posts = Post.all
 	erb :user_home
 end
 
@@ -95,10 +96,19 @@ end
 get '/new_post' do
  	erb :new_post
 end
+get '/edit_post/:post_id' do #does not find the path
+	@post = @user.post.find(params[:post_id])
+	erb :edit_post
+end
 
 post '/new_post' do
  	Post.create(title: params[:title], message: params[:message], user_id: current_user.id)
  	redirect '/user_home'
+end
+post '/edit_post/:post_id' do
+	@post = Post.find(params[:post_id])
+	@post.update_attributes(params[:post])
+	erb :user_home
 end
 
 ###################################

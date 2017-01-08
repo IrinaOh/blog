@@ -1,10 +1,22 @@
-<div>	
-	<form action="/sign_in" id="sign-in" method="POST">
-		<label for="email">Email</label>
-		<input type="email" name="email">
-		<label for="password">Password</label>
-		<input type="password" name="password">
-		<input type="submit" value="Sign In">
-	</form>
-	<a href='/create_account'> Create Account</a>
+<div class="wrapper row" >
+    <div class="content-blocks col-xs-6", id="glob_content">
+    	<div id="form-title">
+    		Please Sign In
+    	</div>
+    	<div id="form-content">
+    		<form action="/sign_in" id="sign-in" method="POST">
+				<label for="email">Email</label>
+				<input type="email" name="email"><br>
+				<label for="password">Password</label>
+				<input type="password" name="password">
+				<input type="submit" value="Sign In">
+			</form>
+			<div>		
+				<a href='/create_account'> Create Account</a>
+			</div>
+    	</div>		
+    </div>
+    <div class="content-blocks col-xs-6" >
+    	<img id="front-image" src="/images/front_page.jpg" style="width: 600px">
+    </div>
 </div>

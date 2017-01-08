@@ -21,10 +21,10 @@ get '/sign_in' do
 end
 
 post '/sign_in' do   
-	@user = User.where(email: params[:email]).first   
+	@user = User.where(email: params[:email]).first  
 	if @user && @user.password == params[:password]     
 		session[:user_id] = @user.id     
-		redirect '/profile'   
+		redirect '/user_home'   
 	else     
 		flash[:alert] = "log in failed, invalid username or password, please try again"   
 		redirect '/sign_in'
@@ -59,17 +59,17 @@ get '/sign-out' do
 end
 
 ########### User's Home Page ########################
-get '/home' do
+get '/user_home' do
 	@user = current_user
 	erb :user_home
 end
 
 ########### Edit and Delete Profile ########################
 
-get '/profile' do
-	@user = current_user
-	erb :profile
-end
+# get '/profile' do
+# 	@user = current_user
+# 	erb :profile
+# end
 
 get '/edit' do
 	@user = current_user
@@ -78,7 +78,7 @@ end
 
 post '/edit' do
 	current_user.update_attributes(params)
-	redirect '/profile'
+	redirect '/user_home'
 end
 
 get '/delete_user' do
@@ -87,15 +87,19 @@ get '/delete_user' do
 end
 
 get '/all_users' do
-	@users = User.all
+	@user = User.all
 	erb :all_users
 end
 
-#################################
+############ Posts #####################
+get '/new_post' do
+ 	erb :new_post
+end
 
-
-
-
+post '/new_post' do
+ 	Post.create(title: params[:title], message: params[:message], user_id: current_user.id)
+ 	redirect '/user_home'
+end
 
 ###################################
 def current_user

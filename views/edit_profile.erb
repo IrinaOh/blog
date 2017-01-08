@@ -1,18 +1,19 @@
 <!-- this is were users can update / edit profile -->
-<h3>Edit Profile</h3>
+<a href="home">Home</a>||
+<a href="profile">Profile</a>||
+<a href="delete_user">Delete Account</a>||
+<a href="sign-out">Sign out</a>||<br>
+
+<h3>Edit Profile</h3><br>
 <form action="/edit" id="edit" method="POST">
 	<label for="fname"> Current first Name </label>
-	<input type="text" name="fname" value=<%= @user.fname %>>
+	<input type="text" name="fname" value=<%= @user.fname %>><br>
 
 	<label for="lname">Current last Name </label>
-	<input type="text" name="lname" value=<%= @user.lname %>>
+	<input type="text" name="lname" value=<%= @user.lname %>><br>
 
 	<label for="Change">Change Password </label>
-	<input type="password" name="password" value=<%= @user.password %>>
+	<input type="password" name="password" value=<%= @user.password %>><br>
 
 	<input type="submit" value="update">
 </form>
-<a href="home">Home</a>
-<a href="profile">Profile</a>
-<a href="delete_user">Delete Account</a>
-<a href="sign-out">Sign out</a>

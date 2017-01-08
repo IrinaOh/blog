@@ -15,6 +15,7 @@ get '/' do
 	session[:user_id] = nil
  	erb :sign_in	
 end
+
 get '/sign_in' do
 	erb :sign_in
 end
@@ -35,6 +36,7 @@ get '/create_account' do
 	session[:user_id] = nil
 	erb :create_account
 end
+
 post '/create_account' do
 	puts "THESE ARE THE PARAMS: #{params.inspect}"
 	if User.where(email: params[:email]).first
@@ -62,11 +64,7 @@ get '/home' do
 	erb :user_home
 end
 
-###################################
-
-
-
-
+########### Edit and Delete Profile ########################
 
 get '/profile' do
 	@user = current_user
@@ -86,6 +84,11 @@ end
 get '/delete_user' do
 	current_user.destroy
 	redirect '/'
+end
+
+get '/all_users' do
+	@users = User.all
+	erb :all_users
 end
 
 #################################

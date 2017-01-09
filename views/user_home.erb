@@ -12,8 +12,8 @@
 	<% @posts.each do |post| %>
 		<h5><%= post.title %></h5><br>
 		<p><%= post.message %></p><br>
-		<a href="edit_post">Edit </a>||
-		<a href="delete_post">Delete</a>
+		<a href="/edit_post/<%= post.id %>">Edit </a>||
+		<a href="/delete_post/<%= post.id %>">Delete</a>
 	<% end %>
 </div>
 

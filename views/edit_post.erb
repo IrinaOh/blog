@@ -4,7 +4,7 @@
 <a href="all_users">Find Friends</a>||
 <a href="edit">Edit Profile</a>||<br>
 <form action="/edit_post/<%= @post.id %>" method="POST">
-	<input type="text"  value="<%= @post.title %>">
-	<input type="text"  value="<%= @post.message %>">
+	<input type="text" name="post[title]" value="<%= @post.title %>">
+	<input type="text" name="post[message]" value="<%= @post.message %>">
 	<input type="submit" value="update">
 </form>

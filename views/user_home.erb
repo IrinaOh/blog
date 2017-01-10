@@ -9,7 +9,7 @@
 
 <div>
 	<h2>Posts:</h2>
-	<% @posts.each do |post| %>
+	<% @user.posts.each do |post| %>
 		<h5><%= post.title %></h5><br>
 		<p><%= post.message %></p><br>
 		<a href="/edit_post/<%= post.id %>">Edit </a>||

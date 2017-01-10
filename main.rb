@@ -66,16 +66,11 @@ get '/user_home' do
 end
 
 get '/all_posts' do
-	@posts = Post.all
+	@posts = Post.all.order(timecreated: :desc).limit(10)
 	erb :all_posts
 end
 
 ########### Edit and Delete Profile ########################
-
-# get '/profile' do
-# 	@user = current_user
-# 	erb :profile
-# end
 
 get '/edit' do
 	@user = current_user

@@ -66,7 +66,7 @@ get '/user_home' do
 end
 
 get '/all_posts' do
-	@posts = Post.all.order(timecreated: :desc).limit(10)
+	@posts = Post.all.limit(10)
 	erb :all_posts
 end
 
